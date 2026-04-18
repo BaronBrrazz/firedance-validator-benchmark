@@ -1,0 +1,10 @@
+# Per-session scoring outputs are ephemeral and machine-specific.
+runs/
+
+# OS and editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/

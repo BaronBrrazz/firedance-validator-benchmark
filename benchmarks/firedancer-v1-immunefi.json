@@ -1,0 +1,2149 @@
+{
+  "schema_version": "1.0",
+  "benchmark_id": "firedancer-v1-immunefi",
+  "_meta": {
+    "purpose": "Hidden regression benchmark for SmartAnon native validator pipeline. Read ONLY by C:/Users/brazd/.claude/eval/native-validator/score.mjs after a run completes. Never imported into prompts, deliverables, system_model, or any agent-visible context.",
+    "labels_only": true,
+    "anchor_quality_legend": {
+      "full": "file/function/keywords sufficient for >=2-class structural match",
+      "subsystem-only": "only subsystem keywords; matcher may rely on llm-judge escalation",
+      "placeholder": "issue text not yet fetched; populate with `gh issue view <n> -R firedancer-io/firedancer`"
+    },
+    "expected_total": 82,
+    "expected_breakdown": {
+      "tracker_items": 79,
+      "immunefi_only_items": 3
+    },
+    "fetched_at": "2026-04-18",
+    "fetch_command": "gh issue view <n> -R firedancer-io/firedancer --json number,title,state,body,closed",
+    "tracker_issue_numbers": [
+      9157,
+      9159,
+      9160,
+      9161,
+      9162,
+      9164,
+      9165,
+      9166,
+      9168,
+      9170,
+      9171,
+      9173,
+      9176,
+      9177,
+      9178
+    ],
+    "lane_vocabulary": [
+      "network-ingress",
+      "memory-safety",
+      "auth-access",
+      "crypto-verification",
+      "consensus-logic",
+      "state-integrity",
+      "sandbox-escape",
+      "ffi-boundary",
+      "denial-of-service",
+      "concurrency"
+    ],
+    "expected_outcome_table": {
+      "present": "final_finding | vulnerable_card",
+      "fixed": "safe_card",
+      "ambiguous": "needs_followup_card",
+      "n/a": "coverage_note"
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "FD-9165-01",
+      "subsystem": "quic-net",
+      "tracker_issue": 9165,
+      "expected_lane": "network-ingress",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_net_tile.h"
+        ],
+        "function_name": [
+          "fd_net_rx_translate_frag"
+        ],
+        "pattern_keywords": [
+          "net_rx",
+          "translate_frag",
+          "fragment",
+          "validation",
+          "strict"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9165-02",
+      "subsystem": "quic-net",
+      "tracker_issue": 9165,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_quic.c"
+        ],
+        "pattern_keywords": [
+          "quic",
+          "invisible",
+          "frame",
+          "limit",
+          "processing"
+        ],
+        "obligation_family": [
+          "tainted-index-to-array"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9165-03",
+      "subsystem": "quic-net",
+      "tracker_issue": 9165,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_quic.c"
+        ],
+        "pattern_keywords": [
+          "quic",
+          "low-bandwidth",
+          "denial",
+          "crafted",
+          "traffic"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9165-04",
+      "subsystem": "quic-net",
+      "tracker_issue": 9165,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_quic_tile.c",
+          "fd_tpu.h"
+        ],
+        "pattern_keywords": [
+          "tpu",
+          "reassembly",
+          "slot",
+          "leak",
+          "release",
+          "closed"
+        ],
+        "obligation_family": [
+          "acquire-release-lifecycle-mismatch"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9173-01",
+      "subsystem": "shred",
+      "tracker_issue": 9173,
+      "expected_lane": "state-integrity",
+      "expected_status": "n/a",
+      "expected_outcome": "coverage_note",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_fec_resolver.c"
+        ],
+        "function_name": [
+          "fd_fec_resolver_add_shred"
+        ],
+        "pattern_keywords": [
+          "fec",
+          "resolver",
+          "fuzz",
+          "coverage",
+          "shred"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9157-01",
+      "subsystem": "consensus",
+      "tracker_issue": 9157,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_tower.c"
+        ],
+        "pattern_keywords": [
+          "tower",
+          "float",
+          "switch",
+          "proof",
+          "mismatch",
+          "agave"
+        ],
+        "obligation_family": [
+          "ub-hotspot",
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9157-02",
+      "subsystem": "consensus",
+      "tracker_issue": 9157,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_rpc_tile.c",
+          "fd_vinyl_exec.c"
+        ],
+        "pattern_keywords": [
+          "rpc",
+          "tower",
+          "resolv",
+          "vinyl",
+          "accdb",
+          "erase",
+          "records"
+        ],
+        "obligation_family": [
+          "acquire-release-lifecycle-mismatch"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9157-03",
+      "subsystem": "consensus",
+      "tracker_issue": 9157,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_ghost.c"
+        ],
+        "state_machine_field": [
+          "valid"
+        ],
+        "pattern_keywords": [
+          "ghost",
+          "valid",
+          "field",
+          "reset",
+          "stale"
+        ],
+        "obligation_family": [
+          "state-machine-terminal-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9157-04",
+      "subsystem": "consensus",
+      "tracker_issue": 9157,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_bank.c"
+        ],
+        "function_name": [
+          "fd_banks_advance_root_prepare"
+        ],
+        "pattern_keywords": [
+          "banks",
+          "advance",
+          "root",
+          "prepare",
+          "traversal",
+          "ignored"
+        ],
+        "obligation_family": [
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9171-01",
+      "subsystem": "runtime-execution",
+      "tracker_issue": 9171,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_runtime.c"
+        ],
+        "pattern_keywords": [
+          "snapshot",
+          "hash",
+          "label",
+          "verification",
+          "archive",
+          "bank"
+        ],
+        "obligation_family": [
+          "provenance-type-confusion"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9171-02",
+      "subsystem": "runtime-execution",
+      "tracker_issue": 9171,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "_anchor_notes": "function_name 'get_minimum_stake_delegation' is the Agave-side name; FD-side has no equivalent symbol on v1.0",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_rewards.c"
+        ],
+        "pattern_keywords": [
+          "rewards",
+          "stake",
+          "delegation",
+          "minimum",
+          "partitioned",
+          "agave",
+          "feature"
+        ],
+        "obligation_family": [
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9171-03",
+      "subsystem": "runtime-execution",
+      "tracker_issue": 9171,
+      "expected_lane": "ffi-boundary",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "_anchor_notes": "tracker title uses C++ scope syntax 'fd_sysvar_pos_t::decode'; FD-side stores decoders as struct callback fields, not as a top-level function symbol",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_sysvar_cache.c",
+          "fd_sysvar_cache_private.h"
+        ],
+        "struct_name": [
+          "fd_sysvar_pos_t"
+        ],
+        "pattern_keywords": [
+          "sysvar",
+          "decode",
+          "function",
+          "pointer",
+          "callback",
+          "fd_sysvar_pos_tbl"
+        ],
+        "obligation_family": [
+          "ffi-abi-mismatch"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9171-04",
+      "subsystem": "runtime-execution",
+      "tracker_issue": 9171,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_executor.c"
+        ],
+        "pattern_keywords": [
+          "executor",
+          "pool",
+          "use-after-free",
+          "uaf",
+          "asan",
+          "released"
+        ],
+        "obligation_family": [
+          "acquire-release-lifecycle-mismatch"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9171-05",
+      "subsystem": "runtime-execution",
+      "tracker_issue": 9171,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_hashes.c"
+        ],
+        "pattern_keywords": [
+          "lthash",
+          "executable",
+          "flag",
+          "normalization",
+          "agave"
+        ],
+        "obligation_family": [
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9171-06",
+      "subsystem": "runtime-execution",
+      "tracker_issue": 9171,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_runtime.c"
+        ],
+        "pattern_keywords": [
+          "UnsupportedProgramId",
+          "conformance",
+          "agave"
+        ],
+        "obligation_family": [
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9171-07",
+      "subsystem": "runtime-execution",
+      "tracker_issue": 9171,
+      "expected_lane": "memory-safety",
+      "expected_status": "n/a",
+      "expected_outcome": "coverage_note",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_gui.c",
+          "fd_hash.c",
+          "fd_sha256.c"
+        ],
+        "pattern_keywords": [
+          "ubsan",
+          "undefined",
+          "behavior",
+          "collection",
+          "testnet"
+        ],
+        "obligation_family": [
+          "ub-hotspot"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9171-08",
+      "subsystem": "runtime-execution",
+      "tracker_issue": 9171,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_bank_abi.c"
+        ],
+        "pattern_keywords": [
+          "vote",
+          "instruction",
+          "misclassified",
+          "compute",
+          "budget",
+          "abi"
+        ],
+        "obligation_family": [
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9170-01",
+      "subsystem": "runtime-vm-elf",
+      "tracker_issue": 9170,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_vm_syscall_cpi.c"
+        ],
+        "pattern_keywords": [
+          "cpi",
+          "syscall",
+          "instruction",
+          "preparation",
+          "error",
+          "unreachable"
+        ],
+        "obligation_family": [
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9170-02",
+      "subsystem": "runtime-vm-elf",
+      "tracker_issue": 9170,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_vm.c"
+        ],
+        "pattern_keywords": [
+          "log",
+          "invalid",
+          "length",
+          "agave"
+        ],
+        "obligation_family": [
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9170-03",
+      "subsystem": "runtime-vm-elf",
+      "tracker_issue": 9170,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_bpf_loader_program.c"
+        ],
+        "function_name": [
+          "fd_deploy_program"
+        ],
+        "pattern_keywords": [
+          "deploy",
+          "program",
+          "log",
+          "extraneous",
+          "bpf",
+          "loader"
+        ],
+        "obligation_family": [
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9170-04",
+      "subsystem": "runtime-vm-elf",
+      "tracker_issue": 9170,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_sbpf_loader.c"
+        ],
+        "pattern_keywords": [
+          ".text",
+          "section",
+          "rodata",
+          "agave",
+          "ordering"
+        ],
+        "obligation_family": [
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9170-05",
+      "subsystem": "runtime-vm-elf",
+      "tracker_issue": 9170,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_sbpf_loader.c"
+        ],
+        "pattern_keywords": [
+          "sh_addr",
+          "sh_offset",
+          "rodata",
+          "elf",
+          "mapping",
+          "size"
+        ],
+        "obligation_family": [
+          "provenance-type-confusion"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9170-06",
+      "subsystem": "runtime-vm-elf",
+      "tracker_issue": 9170,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_sbpf_loader.c"
+        ],
+        "pattern_keywords": [
+          "sht_nobits",
+          "elf",
+          "loader",
+          "crash",
+          ".text"
+        ],
+        "obligation_family": [
+          "fatal-on-untrusted"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9166-01",
+      "subsystem": "repair-forest-blockstore",
+      "tracker_issue": 9166,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_repair_tile.c"
+        ],
+        "function_name": [
+          "fd_forest_fec_chain_verify"
+        ],
+        "pattern_keywords": [
+          "forest",
+          "fec",
+          "chain",
+          "verify",
+          "unreachable",
+          "ordering"
+        ],
+        "obligation_family": [
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9166-02",
+      "subsystem": "repair-forest-blockstore",
+      "tracker_issue": 9166,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_forest.c",
+          "fd_fec_resolver.c"
+        ],
+        "pattern_keywords": [
+          "forest",
+          "cycle",
+          "parent",
+          "offset",
+          "conflicting",
+          "shred"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9166-03",
+      "subsystem": "repair-forest-blockstore",
+      "tracker_issue": 9166,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_repair_tile.c"
+        ],
+        "macro_name": [
+          "FD_LOG_ERR",
+          "FD_TEST",
+          "FD_LOG_CRIT"
+        ],
+        "pattern_keywords": [
+          "repair",
+          "blockstore",
+          "assertion",
+          "crash"
+        ],
+        "obligation_family": [
+          "fatal-on-untrusted"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9166-04",
+      "subsystem": "repair-forest-blockstore",
+      "tracker_issue": 9166,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_repair_tile.c"
+        ],
+        "pattern_keywords": [
+          "repair",
+          "ping",
+          "table",
+          "exhaustion"
+        ],
+        "obligation_family": [
+          "acquire-release-lifecycle-mismatch"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9166-05",
+      "subsystem": "repair-forest-blockstore",
+      "tracker_issue": 9166,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_forest.c"
+        ],
+        "pattern_keywords": [
+          "orphan",
+          "queue",
+          "stale",
+          "reparented",
+          "sentinel"
+        ],
+        "obligation_family": [
+          "acquire-release-lifecycle-mismatch"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-01",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "concurrency",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_vinyl_exec.c"
+        ],
+        "pattern_keywords": [
+          "vinyl",
+          "client_leave",
+          "ordering",
+          "request",
+          "drop"
+        ],
+        "obligation_family": [
+          "acquire-release-lifecycle-mismatch"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-02",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_http_resolver.c"
+        ],
+        "function_name": [
+          "peer_connect"
+        ],
+        "pattern_keywords": [
+          "http_resolver",
+          "peer_connect",
+          "partial",
+          "failure",
+          "corrupted"
+        ],
+        "obligation_family": [
+          "partial-failure-rollback-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-03",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_slot_delta_parser.c"
+        ],
+        "state_machine_field": [
+          "DONE"
+        ],
+        "pattern_keywords": [
+          "slot",
+          "delta",
+          "parser",
+          "zero",
+          "len",
+          "DONE"
+        ],
+        "obligation_family": [
+          "state-machine-terminal-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-04",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapct_tile.c"
+        ],
+        "function_name": [
+          "on_snapshot_hash"
+        ],
+        "pattern_keywords": [
+          "snapct",
+          "snapshot",
+          "incremental",
+          "ULONG_MAX",
+          "fallback"
+        ],
+        "obligation_family": [
+          "provenance-type-confusion"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-05",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapdc_tile.c"
+        ],
+        "state_machine_field": [
+          "ERROR"
+        ],
+        "pattern_keywords": [
+          "snapdc",
+          "control",
+          "forwarding",
+          "contract",
+          "ERROR"
+        ],
+        "obligation_family": [
+          "state-machine-terminal-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-06",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapin_tile.c"
+        ],
+        "struct_name": [
+          "snapin_txn"
+        ],
+        "pattern_keywords": [
+          "snapin",
+          "dcache",
+          "app",
+          "region",
+          "vinyl",
+          "mailbox",
+          "uninitialized"
+        ],
+        "obligation_family": [
+          "ub-hotspot"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-07",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapla_tile.c"
+        ],
+        "state_machine_field": [
+          "FAIL",
+          "INIT"
+        ],
+        "pattern_keywords": [
+          "snapla",
+          "fragment",
+          "offset",
+          "FAIL",
+          "INIT",
+          "stale",
+          "retry"
+        ],
+        "obligation_family": [
+          "partial-failure-rollback-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-08",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapld_tile.c"
+        ],
+        "pattern_keywords": [
+          "snapld",
+          "zero-length",
+          "http",
+          "snapshot",
+          "deadlock",
+          "pipeline"
+        ],
+        "obligation_family": [
+          "state-machine-terminal-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-09",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snaplh_tile.c"
+        ],
+        "state_machine_field": [
+          "IDLE"
+        ],
+        "pattern_keywords": [
+          "snaplh",
+          "snapwh",
+          "IDLE",
+          "process",
+          "data",
+          "contract"
+        ],
+        "obligation_family": [
+          "state-machine-terminal-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-10",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapls_tile.c"
+        ],
+        "pattern_keywords": [
+          "snapls",
+          "snapshot_hash_tile_count",
+          "OOB",
+          "out-of-bounds"
+        ],
+        "obligation_family": [
+          "tainted-index-to-array"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-11",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snaplv_tile.c"
+        ],
+        "state_machine_field": [
+          "FAIL"
+        ],
+        "pattern_keywords": [
+          "snaplv",
+          "buffered",
+          "duplicate",
+          "FAIL",
+          "synchronization"
+        ],
+        "obligation_family": [
+          "partial-failure-rollback-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-12",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "concurrency",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "unverified-on-v1.0",
+      "_anchor_notes": "tracker references src/discof/restore/fd_snapmk_para.c which is absent from v1.0 source tree (no 'snapmk' references anywhere). Likely an auditor-internal branch artifact; matcher will not hit on v1.0 runs",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapmk_para.c"
+        ],
+        "struct_name": [
+          "fd_fctl"
+        ],
+        "pattern_keywords": [
+          "snapmk",
+          "flow-control",
+          "credit",
+          "accounting",
+          "fctl"
+        ],
+        "obligation_family": [
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-13",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapwh_tile.c"
+        ],
+        "pattern_keywords": [
+          "snapwh",
+          "avx512",
+          "uninitialized",
+          "stack",
+          "pair_cnt",
+          "hashing"
+        ],
+        "obligation_family": [
+          "ub-hotspot"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-14",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapwm_tile_vinyl.c"
+        ],
+        "state_machine_field": [
+          "FAIL"
+        ],
+        "pattern_keywords": [
+          "snapwm",
+          "incremental",
+          "FAIL",
+          "inconsistent",
+          "hard-fail"
+        ],
+        "obligation_family": [
+          "partial-failure-rollback-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-15",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapwr_tile.c"
+        ],
+        "struct_name": [
+          "vinyl_admin"
+        ],
+        "pattern_keywords": [
+          "snapwr",
+          "wr_seq",
+          "OOB",
+          "tile_count"
+        ],
+        "obligation_family": [
+          "tainted-index-to-array"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-16",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_ssarchive.c"
+        ],
+        "function_name": [
+          "fd_ssarchive_latest_pair",
+          "fd_ssarchive_remove_old_snapshots"
+        ],
+        "pattern_keywords": [
+          "ssarchive",
+          "readdir",
+          "abort",
+          "falsely"
+        ],
+        "obligation_family": [
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-17",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_snapct_tile.c"
+        ],
+        "struct_name": [
+          "fd_ssctrl_init_t"
+        ],
+        "pattern_keywords": [
+          "ssctrl",
+          "hostname",
+          "is_https",
+          "uninitialized",
+          "init",
+          "message"
+        ],
+        "obligation_family": [
+          "ub-hotspot"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-18",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_sshttp.c"
+        ],
+        "pattern_keywords": [
+          "sshttp",
+          "redirect",
+          "loop",
+          "protection",
+          "hops"
+        ],
+        "obligation_family": [
+          "state-machine-terminal-gap"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-19",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_sshttp.c"
+        ],
+        "pattern_keywords": [
+          "sshttp",
+          "double-close",
+          "stale",
+          "fd",
+          "connect",
+          "failure"
+        ],
+        "obligation_family": [
+          "acquire-release-lifecycle-mismatch"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-20",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_ssload.c"
+        ],
+        "function_name": [
+          "fd_ssload_recover"
+        ],
+        "pattern_keywords": [
+          "ssload",
+          "epoch_stakes",
+          "leader_schedule",
+          "consume"
+        ],
+        "obligation_family": [
+          "tainted-index-to-array"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-21",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_ssmanifest_parser.c"
+        ],
+        "pattern_keywords": [
+          "ssmanifest",
+          "stake",
+          "delegations",
+          "length",
+          "OOB",
+          "write"
+        ],
+        "obligation_family": [
+          "tainted-length-to-memcpy"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-22",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_ssmsg.h"
+        ],
+        "pattern_keywords": [
+          "ssmsg",
+          "stake_delegations_len",
+          "manifest",
+          "buffer",
+          "OOB"
+        ],
+        "obligation_family": [
+          "tainted-length-to-memcpy"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-23",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_ssparse.c"
+        ],
+        "pattern_keywords": [
+          "ssparse",
+          "batch",
+          "fast",
+          "path",
+          "header",
+          "validation",
+          "batch_enabled"
+        ],
+        "obligation_family": [
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-24",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_sspeer_selector.c"
+        ],
+        "pattern_keywords": [
+          "sspeer",
+          "selector",
+          "incremental",
+          "incr_slot",
+          "ULONG_MAX"
+        ],
+        "obligation_family": [
+          "provenance-type-confusion"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-25",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_ssping.c"
+        ],
+        "function_name": [
+          "fd_ssping_remove"
+        ],
+        "pattern_keywords": [
+          "ssping",
+          "untracked",
+          "peer",
+          "abort",
+          "no-op"
+        ],
+        "obligation_family": [
+          "fatal-on-untrusted"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-26",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_ssresolve.c"
+        ],
+        "pattern_keywords": [
+          "ssresolve",
+          "https",
+          "tls",
+          "sni",
+          "init"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-27",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_vinyl_admin.h"
+        ],
+        "struct_name": [
+          "vinyl_admin"
+        ],
+        "pattern_keywords": [
+          "vinyl_admin",
+          "wr_seq",
+          "snapwr",
+          "tile",
+          "count"
+        ],
+        "obligation_family": [
+          "tainted-index-to-array"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9176-28",
+      "subsystem": "restore-snapshot-vinyl",
+      "tracker_issue": 9176,
+      "expected_lane": "concurrency",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_vinyl_io_wd.c"
+        ],
+        "function_name": [
+          "fd_vinyl_io_wd_ctrl"
+        ],
+        "pattern_keywords": [
+          "vinyl",
+          "io_wd",
+          "ctrl",
+          "block",
+          "acknowledgment",
+          "api"
+        ],
+        "obligation_family": [
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9161-01",
+      "subsystem": "pack-bank-execle",
+      "tracker_issue": 9161,
+      "expected_lane": "ffi-boundary",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_pack_tile.c"
+        ],
+        "pattern_keywords": [
+          "pack",
+          "trailer",
+          "opaque",
+          "pointer",
+          "bank",
+          "trusted",
+          "microblock"
+        ],
+        "obligation_family": [
+          "provenance-type-confusion"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9161-02",
+      "subsystem": "pack-bank-execle",
+      "tracker_issue": 9161,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_execle_tile.c"
+        ],
+        "pattern_keywords": [
+          "execle",
+          "untrusted",
+          "sz",
+          "underflow",
+          "OOB",
+          "pack"
+        ],
+        "obligation_family": [
+          "tainted-length-to-memcpy",
+          "tainted-arith-before-buffer-use"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9161-03",
+      "subsystem": "pack-bank-execle",
+      "tracker_issue": 9161,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_vm.c"
+        ],
+        "pattern_keywords": [
+          "cu",
+          "compute-unit",
+          "lazy",
+          "accounting",
+          "speculative",
+          "exhaustion"
+        ],
+        "obligation_family": [
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9162-01",
+      "subsystem": "poh",
+      "tracker_issue": 9162,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_poh.c"
+        ],
+        "pattern_keywords": [
+          "poh",
+          "execle",
+          "sz",
+          "underflow",
+          "OOB",
+          "untrusted"
+        ],
+        "obligation_family": [
+          "tainted-arith-before-buffer-use"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9162-02",
+      "subsystem": "poh",
+      "tracker_issue": 9162,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_poh.c"
+        ],
+        "pattern_keywords": [
+          "poh",
+          "slot",
+          "guard",
+          "inverted",
+          "reject"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9178-01",
+      "subsystem": "verify-dedup-resolv",
+      "tracker_issue": 9178,
+      "expected_lane": "ffi-boundary",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_resolv_tile.c",
+          "fd_dedup_tile.c"
+        ],
+        "pattern_keywords": [
+          "dedup",
+          "resolv",
+          "buffer",
+          "overflow",
+          "ipc",
+          "cross-tile"
+        ],
+        "obligation_family": [
+          "tainted-length-to-memcpy"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9160-01",
+      "subsystem": "gossip",
+      "tracker_issue": 9160,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_gossip.c"
+        ],
+        "pattern_keywords": [
+          "gossip",
+          "PullRequest",
+          "bloom",
+          "filter",
+          "exhaustion",
+          "rate"
+        ],
+        "obligation_family": [
+          "fatal-on-untrusted"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9160-02",
+      "subsystem": "gossip",
+      "tracker_issue": 9160,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_verify_tile.c"
+        ],
+        "pattern_keywords": [
+          "verify",
+          "gossip",
+          "vote",
+          "transaction",
+          "untrusted",
+          "length",
+          "memcpy"
+        ],
+        "obligation_family": [
+          "tainted-length-to-memcpy"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9159-01",
+      "subsystem": "eqvoc",
+      "tracker_issue": 9159,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_eqvoc.c"
+        ],
+        "pattern_keywords": [
+          "eqvoc",
+          "equivocation",
+          "merkle",
+          "node",
+          "root",
+          "adjacent",
+          "fec"
+        ],
+        "obligation_family": [
+          "provenance-type-confusion"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9159-02",
+      "subsystem": "eqvoc",
+      "tracker_issue": 9159,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_eqvoc.c"
+        ],
+        "pattern_keywords": [
+          "eqvoc",
+          "fec_map",
+          "stale",
+          "LAST",
+          "shred"
+        ],
+        "obligation_family": [
+          "acquire-release-lifecycle-mismatch"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9159-03",
+      "subsystem": "eqvoc",
+      "tracker_issue": 9159,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_eqvoc.c"
+        ],
+        "pattern_keywords": [
+          "eqvoc",
+          "duplicate",
+          "shred",
+          "proof",
+          "indices",
+          "hardcoded"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9159-04",
+      "subsystem": "eqvoc",
+      "tracker_issue": 9159,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_eqvoc.c"
+        ],
+        "pattern_keywords": [
+          "eqvoc",
+          "chunk",
+          "slot",
+          "validation",
+          "outer",
+          "gossip"
+        ],
+        "obligation_family": [
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9159-05",
+      "subsystem": "eqvoc",
+      "tracker_issue": 9159,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_eqvoc.c"
+        ],
+        "pattern_keywords": [
+          "eqvoc",
+          "coding",
+          "siblings",
+          "metadata",
+          "inverted"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9159-06",
+      "subsystem": "eqvoc",
+      "tracker_issue": 9159,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_replay_tile.c"
+        ],
+        "pattern_keywords": [
+          "replay",
+          "equivocated",
+          "fec",
+          "chain"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9164-01",
+      "subsystem": "progcache",
+      "tracker_issue": 9164,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_progcache_reclaim.c"
+        ],
+        "macro_name": [
+          "FD_LOG_CRIT"
+        ],
+        "pattern_keywords": [
+          "progcache",
+          "reclaim",
+          "stale",
+          "entry",
+          "critical",
+          "assertion"
+        ],
+        "obligation_family": [
+          "fatal-on-untrusted"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9164-02",
+      "subsystem": "progcache",
+      "tracker_issue": 9164,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_progcache.c"
+        ],
+        "pattern_keywords": [
+          "progcache",
+          "invalidation",
+          "deployment",
+          "cache"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9168-01",
+      "subsystem": "rpc",
+      "tracker_issue": 9168,
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "_anchor_notes": "tracker links to fd_h2_rbuf.h (the buffer it doesn't check) but the function fd_h2_tx_rst_stream is defined in fd_h2_conn.c and called from fd_grpc_client.c",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_h2_rbuf.h",
+          "fd_h2_conn.c",
+          "fd_grpc_client.c"
+        ],
+        "function_name": [
+          "fd_h2_tx_rst_stream"
+        ],
+        "macro_name": [
+          "FD_LOG_CRIT"
+        ],
+        "pattern_keywords": [
+          "h2",
+          "rst_stream",
+          "ring",
+          "buffer",
+          "transmit",
+          "rbuf_tx"
+        ],
+        "obligation_family": [
+          "must-check-return",
+          "fatal-on-untrusted"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9168-02",
+      "subsystem": "rpc",
+      "tracker_issue": 9168,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_rpc_tile.c"
+        ],
+        "pattern_keywords": [
+          "rpc",
+          "bank_idx",
+          "replay",
+          "untrusted",
+          "indexing",
+          "OOB"
+        ],
+        "obligation_family": [
+          "tainted-index-to-array"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9177-01",
+      "subsystem": "util",
+      "tracker_issue": 9177,
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "_anchor_notes": "FD-side symbol is fd_rust_cast_double_to_ulong (mimics Agave's Rust cast semantics)",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_cast.h"
+        ],
+        "function_name": [
+          "fd_rust_cast_double_to_ulong"
+        ],
+        "pattern_keywords": [
+          "cast",
+          "double",
+          "ulong",
+          "INF",
+          "wrap",
+          "negative",
+          "rust_cast"
+        ],
+        "obligation_family": [
+          "ub-hotspot",
+          "reference-implementation-divergence"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9177-02",
+      "subsystem": "util",
+      "tracker_issue": 9177,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_bits.h",
+          "fd_rpc_tile.c",
+          "fd_bundle_tile.c"
+        ],
+        "macro_name": [
+          "FD_LAYOUT"
+        ],
+        "pattern_keywords": [
+          "FD_LAYOUT",
+          "alignment",
+          "page_sz",
+          "align"
+        ],
+        "obligation_family": [
+          "ub-hotspot"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9177-03",
+      "subsystem": "util",
+      "tracker_issue": 9177,
+      "expected_lane": "memory-safety",
+      "expected_status": "n/a",
+      "expected_outcome": "coverage_note",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "macro_name": [
+          "SCRATCH_ALLOC"
+        ],
+        "pattern_keywords": [
+          "scratch_alloc",
+          "redzone",
+          "deepasan",
+          "OOB",
+          "fuzz"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9177-04",
+      "subsystem": "util",
+      "tracker_issue": 9177,
+      "expected_lane": "memory-safety",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "_anchor_notes": "fd_map.c is a template; the symbol is generated as MAP_(remove). The literal token 'MAP_(remove)' appears verbatim at line 384 of the template",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_map.c"
+        ],
+        "macro_name": [
+          "MAP_"
+        ],
+        "pattern_keywords": [
+          "map",
+          "remove",
+          "key_cnt",
+          "underflow",
+          "double-remove"
+        ],
+        "obligation_family": [
+          "tainted-index-to-array",
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-9177-05",
+      "subsystem": "util",
+      "tracker_issue": 9177,
+      "expected_lane": "state-integrity",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "file_basename": [
+          "fd_tcache.c"
+        ],
+        "function_name": [
+          "fd_tcache_reset"
+        ],
+        "pattern_keywords": [
+          "tcache",
+          "reset",
+          "oldest",
+          "return",
+          "value"
+        ],
+        "obligation_family": [
+          "must-check-return"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-IMM-01",
+      "subsystem": "consensus",
+      "tracker_issue": null,
+      "source_url": "https://immunefi.com/audit-competition/firedancer-v1-audit-comp/",
+      "expected_lane": "consensus-logic",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "pattern_keywords": [
+          "towersync",
+          "tpu",
+          "vote",
+          "forge",
+          "forward",
+          "confirmation"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-IMM-02",
+      "subsystem": "rdisp",
+      "tracker_issue": null,
+      "source_url": "https://immunefi.com/audit-competition/firedancer-v1-audit-comp/",
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "function_name": [
+          "fd_rdisp"
+        ],
+        "pattern_keywords": [
+          "rdisp",
+          "writable",
+          "counter",
+          "wrap",
+          "replay",
+          "crash"
+        ],
+        "obligation_family": [
+          "tainted-arith-before-buffer-use"
+        ]
+      }
+    },
+    {
+      "claim_id": "FD-IMM-03",
+      "subsystem": "shred",
+      "tracker_issue": null,
+      "source_url": "https://immunefi.com/audit-competition/firedancer-v1-audit-comp/",
+      "expected_lane": "denial-of-service",
+      "expected_status": "present",
+      "expected_outcome": "vulnerable_card",
+      "_anchor_quality": "full",
+      "semantic_anchors": {
+        "pattern_keywords": [
+          "merkle",
+          "fec",
+          "chained",
+          "scheduler",
+          "replay",
+          "crash",
+          "mid-slot",
+          "child"
+        ],
+        "obligation_family": [
+          "fatal-on-untrusted"
+        ]
+      }
+    }
+  ]
+}
